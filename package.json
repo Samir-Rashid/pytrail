@@ -3,12 +3,27 @@
   "displayName": "pytrail",
   "description": "python profiling for beginners",
   "version": "0.0.1",
+  "publisher": "Samir-Rashid",
+  "icon": "images/icon.png",
+  "license": "GPLv3",
   "engines": {
     "vscode": "^1.78.0"
   },
   "categories": [
-    "Other"
+    "Testing"
   ],
+  "keywords": [
+    "cProfile",
+    "profiler"
+  ],
+  "bugs": {
+    "url": "https://github.com/Samir-Rashid/pytrail/issues"
+  },
+  "homepage": "https://github.com/Samir-Rashid/pytrail",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Samir-Rashid/pytrail"
+  },
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
@@ -28,7 +43,9 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "install": "code --install-extension ./pytrail-0.0.1.vsix",
+    "debug": "vsce package && code --install-extension ./pytrail-0.0.1.vsix"
   },
   "devDependencies": {
     "@types/vscode": "^1.78.0",
