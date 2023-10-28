@@ -1,6 +1,8 @@
 # Custom folders
 .npm-global/
 node_modules/
+out/
+*.vsix
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

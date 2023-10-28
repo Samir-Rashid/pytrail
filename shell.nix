@@ -4,6 +4,7 @@ pkgs.mkShell {
     nodejs
     yarn
     esbuild
+    vsce # used to publish the extension
   ];
   shellHook = ''
     # These lines are only needed for the initial extension bootstrap `yo code`
