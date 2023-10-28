@@ -1,5 +1,9 @@
 # pytrail README
 
+# REQUIRED ATTRIBUTION
+
+Icon by <a href="https://www.flaticon.com/free-icons/hill" title="hill icons">Hill icons created by Freepik - Flaticon</a>
+
 Our extension
 After writing up a brief description, we recommend including the following sections.
 

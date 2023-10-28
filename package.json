@@ -4,7 +4,7 @@
   "description": "python profiling for beginners",
   "version": "0.0.1",
   "publisher": "Samir-Rashid",
-  "icon": "images/icon.png",
+  "icon": "images/hill.png",
   "license": "GPLv3",
   "engines": {
     "vscode": "^1.78.0"

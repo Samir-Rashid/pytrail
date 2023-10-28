@@ -3,6 +3,8 @@
 node_modules/
 out/
 *.vsix
+images/*
+!images/hill.png
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
