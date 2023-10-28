@@ -34,6 +34,9 @@
       }
     ]
   },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack",
@@ -45,21 +48,27 @@
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
     "install": "code --install-extension ./pytrail-0.0.1.vsix",
-    "debug": "vsce package && code --install-extension ./pytrail-0.0.1.vsix"
+    "debug": "vsce package && code --install-extension ./pytrail-0.0.1.vsix",
+    "check": "npx prettier . --check",
+    "format": "npx prettier . --write",
+    "prepare": "husky install"
   },
   "devDependencies": {
-    "@types/vscode": "^1.78.0",
     "@types/mocha": "^10.0.2",
     "@types/node": "18.x",
+    "@types/vscode": "^1.78.0",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
+    "@vscode/test-electron": "^2.3.4",
     "eslint": "^8.50.0",
     "glob": "^10.3.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.2",
     "mocha": "^10.2.0",
-    "typescript": "^5.2.2",
+    "prettier": "3.0.3",
     "ts-loader": "^9.4.4",
+    "typescript": "^5.2.2",
     "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4",
-    "@vscode/test-electron": "^2.3.4"
+    "webpack-cli": "^5.1.4"
   }
 }
