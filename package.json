@@ -29,8 +29,20 @@
   "contributes": {
     "commands": [
       {
-        "command": "pytrail.helloWorld",
-        "title": "Hello World"
+        "command": "pytrail.version",
+        "title": "pytrail: Version"
+      },
+      {
+        "command": "pytrail.doAnnotating",
+        "title": "pytrail: Annotate file"
+      }
+    ],
+    "editor.decorations": [
+      {
+          "type": "line-annotation",
+          "hoverMessage": {
+              "value": "This line took $ms to run."
+          }
       }
     ]
   },
@@ -48,7 +60,7 @@
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
     "install": "code --install-extension ./pytrail-0.0.1.vsix",
-    "debug": "vsce package && code --install-extension ./pytrail-0.0.1.vsix",
+    "debug": "rm -f ./pytrail-0.0.1.vsix && vsce package && code --install-extension ./pytrail-0.0.1.vsix",
     "check": "npx prettier . --check",
     "format": "npx prettier . --write",
     "prepare": "husky install"
