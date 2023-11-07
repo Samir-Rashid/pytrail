@@ -15,7 +15,8 @@ export function runScalene() {
   });
 
   const editor = vscode.window.activeTextEditor;
-  // Run scalene profiler on the Python script and save the JSON output
+
+  // Run scalene profiler on `main.py`, which stores the trace data in `profile.json`
   let command = "scalene /home/samir/Documents/github/pytrail/tasks/main.py";
   if (DEBUG) {
     command = "echo";
@@ -37,6 +38,7 @@ export function runScalene() {
         return;
       }
 
+      // Setup debug output console
       const myOutputChannel =
         vscode.window.createOutputChannel("My Extension Debug");
       myOutputChannel.show();
@@ -66,32 +68,27 @@ export function runScalene() {
             for (const line in linesData) {
               const lineData = linesData[line];
 
-              const time = lineData.n_sys_percent; // Assuming the timing data is in the second position
+              // TODO: format floats better and need to add coloring logic
+              const time = lineData.n_sys_percent.toFixed(2).padStart(5, "0"); // TODO: need to read details on the different profiling statistics
               const lineNumber = lineData.lineno - 1; // VSCode lines are 0 indexed
 
               myOutputChannel.appendLine(
                 "line " + lineNumber + " took " + time + "percent to run",
               );
               if (lineNumber >= 0 && lineNumber < editor.document.lineCount) {
-                myOutputChannel.appendLine(" ADDED\n");
+                myOutputChannel.appendLine(" ↳ ADDED");
 
-                const range = new vscode.Range(
-                  new vscode.Position(lineNumber, 0),
-                  new vscode.Position(lineNumber, 0),
-                );
-
-                // const range = editor.document.lineAt(lineNumber).range;
+                const range = editor.document.lineAt(lineNumber).range;
                 const decoration = {
                   range,
                   renderOptions: {
                     before: {
-                      contentText: `${time}ms`,
+                      contentText: `${time}% `,
                     },
                   },
                 };
 
                 decorations.push(decoration);
-                // editor.setDecorations(decorationType, [decoration]);
               }
             }
             editor.setDecorations(decorationType, decorations);
