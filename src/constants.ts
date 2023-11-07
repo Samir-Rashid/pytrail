@@ -1,3 +1,4 @@
+const vscode = require("vscode");
 const decorationType = vscode.window.createTextEditorDecorationType({
   before: {
     contentText: "100ms",
