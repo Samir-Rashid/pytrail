@@ -14,3 +14,6 @@ vsc-extension-quickstart.md
 **/*.ts
 tasks/
 .husky/
+.prettierignore/
+shell.nix
+.npm_global/

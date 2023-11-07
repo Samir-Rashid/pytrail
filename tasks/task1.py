@@ -1,6 +1,7 @@
 import functions
 
-def get_task():
+# @profile
+def main():
     functions.func1()
     functions.func2()
     functions.func3()

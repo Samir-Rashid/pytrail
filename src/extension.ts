@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { annotateFile, annotateLine } from "./annotation";
+import { runScalene } from "./scalene";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -17,6 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
     // The code you place here will be executed every time your command is executed
     // Display a message box to the user
     vscode.window.showInformationMessage("pytrail2");
+    runScalene();
   });
 
   let doAnnotating = vscode.commands.registerCommand(

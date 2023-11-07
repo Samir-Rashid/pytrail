@@ -3,6 +3,12 @@
 Our extension...
 After writing up a brief description, we recommend including the following sections.
 
+TODO: https://code.visualstudio.com/api/working-with-extensions/bundling-extension
+
+add instructions
+
+
+
 # REQUIRED ATTRIBUTION
 
 Icon by <a href="https://www.flaticon.com/free-icons/hill" title="hill icons">Hill icons created by Freepik - Flaticon</a>
