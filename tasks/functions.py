@@ -1,3 +1,4 @@
+# Store all sleeper functions in here from all 3 tasks.
 import time
 
 def func1():
@@ -16,3 +17,19 @@ def func3():
 def func4():
     time.sleep(1.4)
     print("Hello Mars")
+
+
+def recalibrate(table):
+    for i in table:
+        for j in i:
+            time.sleep(0.1)
+            print(j)
+    time.sleep(0.72)
+
+def verify(table):
+    for i in table:
+        j = reversed(i)
+        s = max(j)
+        if s != 0:
+            print("Good", s)
+    time.sleep(1.123)
