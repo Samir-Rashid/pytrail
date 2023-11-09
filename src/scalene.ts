@@ -10,10 +10,9 @@ export function runScalene() {
   const editor = vscode.window.activeTextEditor;
 
   // Run scalene profiler on `main.py`, which stores the trace data in `profile.json`
-  let command = "scalene /home/samir/Documents/github/pytrail/tasks/main.py";
-  if (DEBUG) {
-    command = "echo";
-  }
+  const workspaceDirectory = getWorkspaceDir();
+  let command = DEBUG ? "echo" : `scalene ${workspaceDirectory}/main.py`;
+
   childProcess.exec(
     command,
     (error: Error | null, stdout: string, stderr: string) => {
@@ -32,13 +31,12 @@ export function runScalene() {
       }
 
       // Setup debug output console
-      const myOutputChannel =
-        vscode.window.createOutputChannel("My Extension Debug");
-      myOutputChannel.show();
+      const myOutputChannel = vscode.window.createOutputChannel("Pytrail");
+      if (DEBUG) myOutputChannel.show();
 
       // Read the JSON data from the profile.json file
       fs.readFile(
-        `/home/samir/Documents/github/pytrail/tasks/profile.json`,
+        `${workspaceDirectory}/profile.json`,
         "utf8",
         (err: Error | null, data: string) => {
           if (err) {
@@ -57,6 +55,7 @@ export function runScalene() {
             const linesData = fileData.lines;
 
             const decorations = [];
+
             // TODO: need to do this for functions and imports
             for (const line in linesData) {
               const lineData = linesData[line];
