@@ -11,7 +11,10 @@ export function runScalene() {
 
   // Run scalene profiler on `main.py`, which stores the trace data in `profile.json`
   const workspaceDirectory = getWorkspaceDir();
-  let command = DEBUG ? "echo" : `scalene ${workspaceDirectory}/main.py`;
+  let command = DEBUG
+    ? "echo"
+    : `scalene --json --no-browser ${workspaceDirectory}/main.py `; // --cli will output to stdout so I don't have to use a file
+  vscode.window.showInformationMessage(`running command: ${command}`);
 
   childProcess.exec(
     command,
