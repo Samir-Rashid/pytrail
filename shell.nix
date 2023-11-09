@@ -14,6 +14,6 @@ pkgs.mkShell {
     # export PATH=/home/samir/Documents/github/pytrail/.npm-global/bin:$PATH
     
     npm install
-    echo "Use `npm run debug`"
+    echo "Use 'npm run debug'"
   '';
 }
