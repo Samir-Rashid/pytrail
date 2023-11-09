@@ -12,7 +12,7 @@ export function annotateLine(lineNum: number) {}
 export async function annotateFile(document: TextDocument | undefined) {
   if (document) {
     if (annotationData.size == 0) {
-      console.log(
+      myOutputChannel.appendLine(
         "annotation: There is no annotation data to use! Try running `pytrail: Get Trace Data` in the command palette.",
       );
       vscode.window.showErrorMessage(
@@ -27,7 +27,7 @@ export async function annotateFile(document: TextDocument | undefined) {
     if (activeEditor) {
       const filePath = activeEditor.document.fileName;
       const fileAnnotationData = annotationData.get(filePath);
-      console.log(`current editor is ${filePath}`);
+      myOutputChannel.appendLine(`current editor is ${filePath}`);
 
       const decorations = [];
 

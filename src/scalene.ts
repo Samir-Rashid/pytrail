@@ -9,9 +9,7 @@ const childProcess = require("child_process");
 export function runScalene() {
   // TODO: should make this more functional
   const workspaceDirectory = getWorkspaceDir();
-  let command = DEBUG
-    ? "echo"
-    : `scalene --json --no-browser ${workspaceDirectory}/main.py `; // --cli will output to stdout so I don't have to use a file
+  let command = `scalene --json --no-browser ${workspaceDirectory}/main.py `; // --cli will output to stdout so I don't have to use a file
   vscode.window.showInformationMessage(`running command: ${command}`);
 
   childProcess.exec(
