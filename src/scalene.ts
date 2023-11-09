@@ -1,19 +1,12 @@
+import { decorationType, DEBUG } from "./constants";
+import { getWorkspaceDir } from "./utilities";
+
 const vscode = require("vscode");
 const fs = require("fs");
 const childProcess = require("child_process");
 
-const DEBUG = true;
-
 // TODO: should make this more functional
 export function runScalene() {
-  const decorationType = vscode.window.createTextEditorDecorationType({
-    before: {
-      contentText: "100ms",
-      margin: "0 0 0 10px",
-      color: "orange",
-    },
-  });
-
   const editor = vscode.window.activeTextEditor;
 
   // Run scalene profiler on `main.py`, which stores the trace data in `profile.json`
