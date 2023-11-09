@@ -1,4 +1,37 @@
+import { DEBUG, myOutputChannel, annotationData } from "./constants";
 const vscode = require("vscode");
+const fs = require("fs");
+
+export function parseAnnotationDataFile() {
+  const workspaceDirectory = getWorkspaceDir();
+  annotationData.clear(); // Flush out of date annotation data
+
+  // Read the JSON data from the profile.json file
+  fs.readFile(
+    `${workspaceDirectory}/profile.json`,
+    "utf8",
+    (err: Error | null, data: string) => {
+      if (err) {
+        vscode.window.showErrorMessage(
+          `Error reading profile.json: ${err.message}`,
+        );
+        return;
+      }
+
+      const profileData = JSON.parse(data);
+
+      // Extract timing data and update decorations for each line
+      for (const filePath in profileData.files) {
+        myOutputChannel.appendLine("parsing file path: " + filePath); // TODO: check difference of this and console.log
+        const fileData = profileData.files[filePath];
+        const linesData = fileData.lines;
+
+        // TODO: need to do this for functions and imports
+        annotationData.set(filePath, linesData);
+      }
+    },
+  );
+}
 
 export function toAnnotationWidth() {}
 
