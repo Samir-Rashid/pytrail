@@ -19,6 +19,11 @@ Trace data provided by [Scalene](https://github.com/plasma-umass/scalene)
 - https://code.visualstudio.com/api/working-with-extensions/bundling-extension
 - add extension to VSCode store
 - add screenshot/gif to features
+- fix the huge amount of prints
+- test on other machines
+- add functions and import performance metadata
+- add coloring mechanism
+
 ---
 
 ## Features
