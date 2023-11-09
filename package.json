@@ -35,6 +35,10 @@
       {
         "command": "pytrail.doAnnotating",
         "title": "pytrail: Annotate file"
+      },
+      {
+        "command": "pytrail.getTraceData",
+        "title": "pytrail: Run tracing"
       }
     ],
     "editor.decorations": [

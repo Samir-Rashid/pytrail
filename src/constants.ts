@@ -2,7 +2,17 @@ const vscode = require("vscode");
 
 export const DEBUG = false;
 
-// TODO: make 3 differnt colors
+// Setup debug output console
+export const myOutputChannel = vscode.window.createOutputChannel("Pytrail");
+
+/// STATE ///
+
+// Map of annotation data for each line and file
+export const annotationData = new Map();
+
+/// END STATE ///
+
+// TODO: make 3 different colors
 export const decorationType = vscode.window.createTextEditorDecorationType({
   before: {
     margin: "0 0 0 10px",
