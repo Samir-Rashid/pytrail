@@ -3,7 +3,9 @@ import {
   DEBUG,
   myOutputChannel,
   annotationData,
-  decorationType,
+  decorationTypeLow,
+  decorationTypeMed,
+  decorationTypeHigh,
 } from "./constants";
 const vscode = require("vscode");
 
@@ -43,13 +45,16 @@ export async function annotateFile(document: TextDocument | undefined) {
         );
         if (lineNumber >= 0 && lineNumber < editor.document.lineCount) {
           myOutputChannel.appendLine(" ↳ ADDED");
-
+          const color = time > 1 ? "red" : "white";
+          const opacity = time > 1 ? "100%" : "50%";
           const range = editor.document.lineAt(lineNumber).range;
           const decoration = {
             range,
             renderOptions: {
               before: {
                 contentText: `${time}% `,
+                color: color,
+                opacity: opacity,
               },
             },
           };
@@ -57,7 +62,7 @@ export async function annotateFile(document: TextDocument | undefined) {
           decorations.push(decoration);
         }
       }
-      editor.setDecorations(decorationType, decorations);
+      editor.setDecorations(decorationTypeLow, decorations);
     }
   }
 }

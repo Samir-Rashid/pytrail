@@ -1,4 +1,4 @@
-import { decorationType, DEBUG } from "./constants";
+import { DEBUG } from "./constants";
 import { getWorkspaceDir } from "./utilities";
 
 const vscode = require("vscode");

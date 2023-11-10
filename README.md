@@ -55,3 +55,7 @@ There are some hard coded values. You must have a runnable main.py.
 
 - Initial release of pytrail
 - basic tracing and editor annotation support
+
+## Contributing
+
+Contributions welcome! File a PR or issue. Note this repository is GNU GPLv3, and your code will be licensed as such.

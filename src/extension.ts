@@ -17,6 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
   const activeTextEditor = vscode.window.activeTextEditor?.document;
   vscode.workspace.onDidChangeTextDocument((e) => annotateFile(e.document));
   vscode.window.onDidChangeActiveTextEditor((e) => annotateFile(e?.document));
+  parseAnnotationDataFile();
   annotateFile(activeTextEditor);
 
   // Register the commands here, as defined from package.json

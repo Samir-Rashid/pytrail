@@ -1,7 +1,7 @@
 from time import sleep
 
 def foo():
-    sleep(1.01)
+    sleep(1.01) # pretend this is a library call, like opencv
     return 3
 
 def main():
