@@ -1,5 +1,6 @@
+import { annotateFile } from "./annotation";
 import { DEBUG } from "./constants";
-import { getWorkspaceDir } from "./utilities";
+import { getWorkspaceDir, parseAnnotationDataFile } from "./utilities";
 
 const vscode = require("vscode");
 const fs = require("fs");
@@ -30,4 +31,11 @@ export function runScalene() {
       }
     },
   );
+
+  // await new Promise(r => setTimeout(r, 100)); // TODO: File doesn't read correctly immediately after the trace. Fix this by just skipping writing to a file
+
+  // Notify rest of extension of new trace data
+  const activeTextEditor = vscode.window.activeTextEditor?.document;
+  parseAnnotationDataFile();
+  annotateFile(activeTextEditor);
 }

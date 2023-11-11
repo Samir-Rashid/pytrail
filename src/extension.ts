@@ -35,8 +35,6 @@ export function activate(context: vscode.ExtensionContext) {
     "pytrail.getTraceData",
     () => {
       runScalene(); // TODO: if this fails, don't continue executing. This spews a bunch of unreadable errors.
-      parseAnnotationDataFile();
-      annotateFile(activeTextEditor);
     },
   );
 
