@@ -1,6 +1,6 @@
 const vscode = require("vscode");
 
-export const DEBUG = true;
+export const DEBUG = true; // This value MUST be set to false for a production build
 
 // Setup debug output console
 export const myOutputChannel = vscode.window.createOutputChannel("Pytrail");
