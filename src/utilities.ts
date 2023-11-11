@@ -7,30 +7,27 @@ export function parseAnnotationDataFile() {
   annotationData.clear(); // Flush out of date annotation data
 
   // Read the JSON data from the profile.json file
-  fs.readFile(
-    `${workspaceDirectory}/profile.json`,
-    "utf8",
-    (err: Error | null, data: string) => {
-      if (err) {
-        vscode.window.showErrorMessage(
-          `Error reading profile.json: ${err.message}`,
-        );
-        return;
-      }
+  const profileJsonPath = `${workspaceDirectory}/profile.json`;
+  fs.readFile(profileJsonPath, "utf8", (err: Error | null, data: string) => {
+    if (err) {
+      vscode.window.showErrorMessage(
+        `Error reading ${profileJsonPath}: ${err.message}\nSuggested fix: if this file does not exist, you need to run the command 'pytrail: Run Tracing'.`,
+      );
+      return;
+    }
 
-      const profileData = JSON.parse(data);
+    const profileData = JSON.parse(data);
 
-      // Extract timing data and update decorations for each line
-      for (const filePath in profileData.files) {
-        myOutputChannel.appendLine("parsing file path: " + filePath);
-        const fileData = profileData.files[filePath];
-        const linesData = fileData.lines;
+    // Extract timing data and update decorations for each line
+    for (const filePath in profileData.files) {
+      myOutputChannel.appendLine("parsing file path: " + filePath);
+      const fileData = profileData.files[filePath];
+      const linesData = fileData.lines;
 
-        // TODO: need to do this for functions and imports
-        annotationData.set(filePath, linesData);
-      }
-    },
-  );
+      // TODO: need to do this for functions and imports
+      annotationData.set(filePath, linesData);
+    }
+  });
 
   if (DEBUG) myOutputChannel.appendLine(annotationData);
 }

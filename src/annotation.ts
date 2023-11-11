@@ -15,10 +15,10 @@ export async function annotateFile(document: TextDocument | undefined) {
   if (document) {
     if (annotationData.size == 0) {
       myOutputChannel.appendLine(
-        "annotation: There is no annotation data to use! Try running `pytrail: Get Trace Data` in the command palette.",
+        "annotation: There is no annotation data to use! Try running `pytrail: Run Tracing` in the command palette.",
       );
       vscode.window.showErrorMessage(
-        "annotation: There is no annotation data to use! Try running `pytrail: Get Trace Data` in the command palette.",
+        "annotation: There is no annotation data to use! Try running `pytrail: Run Tracing` in the command palette.",
       );
       return;
     }
