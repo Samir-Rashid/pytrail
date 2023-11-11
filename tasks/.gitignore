@@ -3,3 +3,4 @@ venv/
 *.html
 *.json
 *.prof
+!.vscode/settings.json

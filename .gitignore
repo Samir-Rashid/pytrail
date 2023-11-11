@@ -5,6 +5,7 @@ out/
 *.vsix
 images/*
 !images/hill.png
+!images/demo.webm.mp4
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

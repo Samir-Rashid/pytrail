@@ -12,6 +12,6 @@ def main():
     for row in arr:
         if row % cnt == 0:
             tmp.append(row)
-    result = (sum(tmp * 200) + len(arr)) / len(tmp)  # comment action #3
+    result = (sum(tmp * 200) + len(arr)) / len(tmp)
     return result
 
