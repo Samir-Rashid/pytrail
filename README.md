@@ -9,7 +9,7 @@ Pytrail is an extension that brings effortless performance tracing to the VSCode
 3. Open command pallette and run `pytrail: Run Tracing`. This requires you to have Python and Scalene installed (`python3 -m pip install -U scalene`). 
 4. You should now have timing metadata on the left of your editor for lines that ran from `main.py`.
 
-## To set up the extension:
+## Development setup:
 
 1. Get the dependencies by doing `npm install` or use the `nix-shell` environment.
 2. I use `npm run debug` during development to build and install the extension. It is easier to use the VSCode built in way for running the extension. Something shows up in the bottom bar to run it (doesn't work for me)
@@ -49,6 +49,8 @@ None
 
 There are some hard coded values. You must have a runnable main.py.
 
+This project is tested and should work. Please file an issue if you have any problems, and I will take a look on a best effort basis.
+
 ## Release Notes
 
 ### 0.0.1
@@ -59,3 +61,5 @@ There are some hard coded values. You must have a runnable main.py.
 ## Contributing
 
 Contributions welcome! File a PR or issue. Note this repository is GNU GPLv3, and your code will be licensed as such.
+
+You MAY use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for your PR. 
