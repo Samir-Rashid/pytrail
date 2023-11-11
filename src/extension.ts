@@ -15,10 +15,9 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Add listeners to annotate active files
   const activeTextEditor = vscode.window.activeTextEditor?.document;
-  vscode.workspace.onDidChangeTextDocument((e) => annotateFile(e.document));
-  vscode.window.onDidChangeActiveTextEditor((e) => annotateFile(e?.document));
   parseAnnotationDataFile();
   annotateFile(activeTextEditor);
+  vscode.window.onDidChangeActiveTextEditor((e) => annotateFile(e?.document));
 
   // Register the commands here, as defined from package.json
   let disposable = vscode.commands.registerCommand("pytrail.version", () => {
