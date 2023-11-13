@@ -32,6 +32,7 @@ Trace data provided by [Scalene](https://github.com/plasma-umass/scalene)
   - make the function annotations highlighted to differentiate
   - this requires making my own parsing logic and profile read time to map the function data into my lines metadata map
 - Outstanding bug in VSCode means I can't put the annotation in the gutter, so deleting code makes things wonky. A compromise between rerendering every keypress and every file change should be to only rerender if the number of lines in the file has changed. Of course, this will misalign the metadata, so this needs some sort of cheap extra logic to handle that case.
+- bundle with scalene?
 
 ---
 
