@@ -11,4 +11,5 @@ Resources I used.
 - https://vscode.rocks/decorations/
   - I found this post late into development. It is very informative and I wish
     there was more documentation like this. Unfortunately, this guy's blog is dead.
-
+- https://github.com/microsoft/vscode-extension-samples/blob/main/decorator-sample/USAGE.md
+  - many sample extensions to reference
