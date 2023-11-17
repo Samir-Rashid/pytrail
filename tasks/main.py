@@ -1,3 +1,3 @@
-import task2
+import task3
 
-task2.main()
+task3.main()

@@ -1,6 +1,7 @@
 # Sample Matrix PLU Decomposition.
 
 import functions
+import time
 
 def plu_decomposition(matrix):
     n = len(matrix)
@@ -27,18 +28,20 @@ def plu_decomposition(matrix):
 
     return p, l, u
 
-# Example usage
-matrix = [[2, -1, -2],
-          [4, 6, 3],
-          [-4, 3, -2]]
+def main():
+    # Example usage
+    time.sleep(1)
+    matrix = [[2, -1, -2],
+            [4, 6, 3],
+            [-4, 3, -2]]
 
-p, l, u = plu_decomposition(matrix)
-print("P matrix:")
-for row in p:
-    print(row)
-print("L matrix:")
-for row in l:
-    print(row)
-print("U matrix:")
-for row in u:
-    print(row)
+    p, l, u = plu_decomposition(matrix)
+    print("P matrix:")
+    for row in p:
+        print(row)
+    print("L matrix:")
+    for row in l:
+        print(row)
+    print("U matrix:")
+    for row in u:
+        print(row)
