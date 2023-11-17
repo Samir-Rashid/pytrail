@@ -2,6 +2,9 @@
 
 import functions
 import time
+import numpy as np
+
+MATRIX_SIZE = 500
 
 def plu_decomposition(matrix):
     n = len(matrix)
@@ -12,6 +15,8 @@ def plu_decomposition(matrix):
     functions.recalibrate(p)
 
     for j in range(n):
+        if j % 10 == 0:
+            print(f"{j/MATRIX_SIZE * 100}% done")
         # Partial Pivoting
         pivot_row = max(range(j, n), key=lambda i: abs(matrix[i][j]))
         if j != pivot_row:
@@ -31,17 +36,16 @@ def plu_decomposition(matrix):
 def main():
     # Example usage
     time.sleep(1)
-    matrix = [[2, -1, -2],
-            [4, 6, 3],
-            [-4, 3, -2]]
+
+    matrix = np.random.randint(1, 100, size=(MATRIX_SIZE, MATRIX_SIZE)).tolist()
 
     p, l, u = plu_decomposition(matrix)
-    print("P matrix:")
-    for row in p:
-        print(row)
-    print("L matrix:")
-    for row in l:
-        print(row)
-    print("U matrix:")
-    for row in u:
-        print(row)
+    # print("P matrix:")
+    # for row in p:
+    #     print(row)
+    # print("L matrix:")
+    # for row in l:
+    #     print(row)
+    # print("U matrix:")
+    # for row in u:
+    #     print(row)
