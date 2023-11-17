@@ -1,3 +1,4 @@
+import path = require("path");
 import { annotateFile } from "./annotation";
 import { DEBUG } from "./constants";
 import { getWorkspaceDir, parseAnnotationDataFile } from "./utilities";
@@ -10,7 +11,10 @@ const childProcess = require("child_process");
 export function runScalene() {
   // TODO: should make this more functional
   const workspaceDirectory = getWorkspaceDir();
-  let command = `python -m scalene --json --no-browser --cli --outfile ${workspaceDirectory}/profile.json ${workspaceDirectory}/main.py`; // --cli will output to stdout so I don't have to use a file
+  const profilePath = path.join(workspaceDirectory, "profile.json");
+  const mainpyPath = path.join(workspaceDirectory, "main.py");
+
+  let command = `python -m scalene --json --no-browser --cli --outfile ${profilePath} ${mainpyPath}`; // --cli will output to stdout so I don't have to use a file
   vscode.window.showInformationMessage(`running command: ${command}`);
 
   childProcess.exec(

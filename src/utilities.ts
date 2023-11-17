@@ -1,3 +1,4 @@
+import path = require("path");
 import { DEBUG, myOutputChannel, annotationData } from "./constants";
 const vscode = require("vscode");
 const fs = require("fs");
@@ -7,7 +8,7 @@ export function parseAnnotationDataFile() {
   annotationData.clear(); // Flush out of date annotation data
 
   // Read the JSON data from the profile.json file
-  const profileJsonPath = `${workspaceDirectory}/profile.json`;
+  const profileJsonPath = path.join(workspaceDirectory, "profile.json");
   fs.readFile(profileJsonPath, "utf8", (err: Error | null, data: string) => {
     if (err) {
       vscode.window.showErrorMessage(
