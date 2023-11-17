@@ -37,7 +37,11 @@ export async function annotateFile(document: TextDocument | undefined) {
         const lineData = fileAnnotationData[line];
 
         // TODO: format floats better and need to add coloring logic
-        const time = lineData.n_sys_percent.toFixed(2).padStart(5, "0"); // TODO: need to read details on the different profiling statistics
+        const sumTimes =
+          lineData.n_sys_percent +
+          lineData.n_cpu_percent_python +
+          lineData.n_cpu_percent_c;
+        const time = sumTimes.toFixed(2).padStart(5, "0"); // TODO: need to read details on the different profiling statistics
         const lineNumber = lineData.lineno - 1; // VSCode lines are 0 indexed
 
         myOutputChannel.appendLine(
