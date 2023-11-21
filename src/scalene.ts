@@ -1,6 +1,6 @@
 import path = require("path");
 import { annotateFile } from "./annotation";
-import { DEBUG } from "./constants";
+import { DEBUG, myOutputChannel } from "./constants";
 import { getWorkspaceDir, parseAnnotationDataFile } from "./utilities";
 
 const vscode = require("vscode");
@@ -14,29 +14,36 @@ export function runScalene() {
   const profilePath = path.join(workspaceDirectory, "profile.json");
   const mainpyPath = path.join(workspaceDirectory, "main.py");
 
-  let command = `python -m scalene --json --no-browser --cli --outfile ${profilePath} ${mainpyPath}`; // --cli will output to stdout so I don't have to use a file
+  // TODO: --cli will output to stdout so I don't have to use a file
+  const command = `python -m scalene --json --no-browser --cli --outfile ${profilePath} ${mainpyPath}`;
   vscode.window.showInformationMessage(`running command: ${command}`);
+  myOutputChannel.appendLine(`running command: ${command}`);
 
-  childProcess.exec(
-    command,
-    (error: Error | null, stdout: string, stderr: string) => {
-      // Display the standard output and standard error for debugging
-      if (DEBUG && stdout) {
-        vscode.window.showInformationMessage(`stdout: ${stdout}`);
-      }
-      if (DEBUG && stderr) {
-        vscode.window.showErrorMessage(`stderr: ${stderr}`);
-      }
-      if (error) {
-        vscode.window.showErrorMessage(
-          `Error running scalene: ${error.message}`,
-        );
-        return;
-      }
-    },
-  );
+  const startTime = new Date();
 
-  // await new Promise(r => setTimeout(r, 100)); // TODO: File doesn't read correctly immediately after the trace. Fix this by just skipping writing to a file
+  // Make sure command output is readable
+  myOutputChannel.clear();
+  myOutputChannel.show();
+
+  const process = childProcess.spawn(command, [], { shell: true });
+
+  process.stdout.on("data", (data: any) => {
+    myOutputChannel.append(data.toString());
+  });
+
+  process.stderr.on("data", (data: any) => {
+    myOutputChannel.append(data.toString());
+  });
+
+  process.on("close", (code: string) => {
+    const endTime = new Date();
+    const elapsedTime = (endTime.getTime() - startTime.getTime()) / 1000;
+    myOutputChannel.appendLine("");
+    myOutputChannel.appendLine(
+      "[Done] exited with code=" + code + " in " + elapsedTime + " seconds",
+    );
+    myOutputChannel.appendLine("");
+  });
 
   // Notify rest of extension of new trace data
   const activeTextEditor = vscode.window.activeTextEditor?.document;
