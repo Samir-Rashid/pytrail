@@ -15,7 +15,11 @@ export function runScalene() {
   const mainpyPath = path.join(workspaceDirectory, "main.py");
 
   // TODO: --cli will output to stdout so I don't have to use a file
-  const command = `python -m scalene --json --no-browser --cli --outfile ${profilePath} ${mainpyPath}`;
+  // Use the nonglobal scalene installation (-m) and unbuffer text output
+  // so it can be streamed to debug console (-u)
+  // BUG: `-u` doesn't work with scalene
+  // BUG: scalene doesn't respect --json flag correctly.
+  const command = `python -um scalene --json --no-browser --cli --outfile ${profilePath} ${mainpyPath}`;
   vscode.window.showInformationMessage(`running command: ${command}`);
   myOutputChannel.appendLine(`running command: ${command}`);
 
@@ -25,17 +29,29 @@ export function runScalene() {
   myOutputChannel.clear();
   myOutputChannel.show();
 
-  const process = childProcess.spawn(command, [], { shell: true });
+  // Add env var to force Python to not buffer output
+  // TODO: Did not succeed.
+  const addToEnv = {
+    PYTHONUNBUFFERED: "",
+  };
+  const newEnv = { ...process.env, ...addToEnv };
 
-  process.stdout.on("data", (data: any) => {
+  const subprocess = childProcess.spawn(command, [], {
+    shell: true,
+    env: newEnv,
+  });
+
+  subprocess.stdout.on("data", (data: any) => {
     myOutputChannel.append(data.toString());
   });
 
-  process.stderr.on("data", (data: any) => {
+  subprocess.stderr.on("data", (data: any) => {
     myOutputChannel.append(data.toString());
   });
 
-  process.on("close", (code: string) => {
+  // Running code from
+  // https://github.com/formulahendry/vscode-code-runner/blob/master/src/codeManager.ts#L459
+  subprocess.on("close", (code: string) => {
     const endTime = new Date();
     const elapsedTime = (endTime.getTime() - startTime.getTime()) / 1000;
     myOutputChannel.appendLine("");
