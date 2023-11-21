@@ -7,11 +7,8 @@ import { parseAnnotationDataFile } from "./utilities";
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  // Show debug console with extension's output
+  // Show output console with extension's output
   myOutputChannel.appendLine("Pytrail has started");
-  if (DEBUG) myOutputChannel.show();
-
-  // TODO: add some logic to check if the trace data doesn't exist and surface an error to the user to run the getTraceData command
 
   // Add listeners to annotate active files
   const activeTextEditor = vscode.window.activeTextEditor?.document;

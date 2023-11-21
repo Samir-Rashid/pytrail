@@ -36,3 +36,8 @@ export const decorationTypeHigh = vscode.window.createTextEditorDecorationType({
 // https://github.com/microsoft/vscode/issues/105302
 // https://github.com/microsoft/vscode/issues/28080
 // hoverMessage: "test message",
+
+// TODO: Should just export a single state object
+// export class Constants {
+//   public static readonly debug = false;
+// }

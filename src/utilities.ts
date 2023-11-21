@@ -21,7 +21,7 @@ export function parseAnnotationDataFile() {
 
     // Extract timing data and update decorations for each line
     for (const filePath in profileData.files) {
-      myOutputChannel.appendLine("parsing file path: " + filePath);
+      if (DEBUG) myOutputChannel.appendLine("parsing file path: " + filePath);
       const fileData = profileData.files[filePath];
       const linesData = fileData.lines;
 
@@ -29,8 +29,6 @@ export function parseAnnotationDataFile() {
       annotationData.set(filePath, linesData);
     }
   });
-
-  if (DEBUG) myOutputChannel.appendLine(annotationData);
 }
 
 export function toAnnotationWidth() {}
@@ -44,7 +42,6 @@ export function getWorkspaceDir() {
 
     const workspaceDirectory = workspaceFolder.uri.fsPath;
 
-    myOutputChannel.appendLine(`Workspace Directory: ${workspaceDirectory}`);
     return workspaceDirectory;
   } else {
     myOutputChannel.appendLine("No workspace is open.");

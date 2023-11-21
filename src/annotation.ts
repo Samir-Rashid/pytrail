@@ -7,6 +7,7 @@ import {
   decorationTypeMed,
   decorationTypeHigh,
 } from "./constants";
+import { parseAnnotationDataFile } from "./utilities";
 const vscode = require("vscode");
 
 export function annotateLine(lineNum: number) {}
@@ -20,6 +21,11 @@ export async function annotateFile(document: TextDocument | undefined) {
       vscode.window.showErrorMessage(
         "annotation: There is no annotation data to use! Try running `pytrail: Run Tracing` in the command palette.",
       );
+
+      // Retry reading file
+      myOutputChannel.appendLine("annotation: Retrying parsing data file");
+      parseAnnotationDataFile();
+
       return;
     }
 
@@ -29,7 +35,7 @@ export async function annotateFile(document: TextDocument | undefined) {
     if (activeEditor) {
       const filePath = activeEditor.document.fileName;
       const fileAnnotationData = annotationData.get(filePath);
-      myOutputChannel.appendLine(`current editor is ${filePath}`);
+      if (DEBUG) myOutputChannel.appendLine(`current editor is ${filePath}`);
 
       const decorations = [];
 
@@ -44,11 +50,7 @@ export async function annotateFile(document: TextDocument | undefined) {
         const time = sumTimes.toFixed(2).padStart(5, "0"); // TODO: need to read details on the different profiling statistics
         const lineNumber = lineData.lineno - 1; // VSCode lines are 0 indexed
 
-        myOutputChannel.appendLine(
-          "line " + lineNumber + " took " + time + "percent to run",
-        );
         if (lineNumber >= 0 && lineNumber < editor.document.lineCount) {
-          myOutputChannel.appendLine(" ↳ ADDED");
           const color = time > 1 ? "red" : "white";
           const opacity = time > 1 ? "100%" : "50%";
           const range = editor.document.lineAt(lineNumber).range;
@@ -66,6 +68,10 @@ export async function annotateFile(document: TextDocument | undefined) {
           decorations.push(decoration);
         }
       }
+      if (DEBUG)
+        myOutputChannel.appendLine(
+          `annotation: Annotating ${decorations.length} lines`,
+        );
       editor.setDecorations(decorationTypeLow, decorations);
     }
   }
