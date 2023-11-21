@@ -4,6 +4,7 @@ out/**
 node_modules/**
 .npm_global/**
 src/**
+docs/**
 .gitignore
 .yarnrc
 webpack.config.js

@@ -13,3 +13,5 @@ Resources I used.
     there was more documentation like this. Unfortunately, this guy's blog is dead.
 - https://github.com/microsoft/vscode-extension-samples/blob/main/decorator-sample/USAGE.md
   - many sample extensions to reference
+- https://github.com/formulahendry/vscode-code-runner/tree/master
+  - Nice, simple extension for reference of obscure VSCode features

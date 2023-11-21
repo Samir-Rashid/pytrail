@@ -7,6 +7,9 @@ Pytrail is an extension that brings effortless performance tracing to the VSCode
 https://github.com/Samir-Rashid/pytrail/assets/35205346/e53e6ea7-ac18-4b3a-b99f-d721e18ff835
 
 ## Quick setup
+<a href="https://marketplace.visualstudio.com/items?itemName=Samir-Rashid.pytrail">
+  <img src="https://img.shields.io/badge/Install-VSCode%20Marketplace-blue" alt="Marketplace Badge"/>
+</a>
 
 1. Install from VSIX inside VSCode by `right click file -> install` or use `code --install-extension ./pytrail-0.0.1.vsix`
 2. Make sure you have a working main.py in the root of your vscode workspace. For example, open `tasks/` in VSCode.
@@ -26,16 +29,16 @@ Logo icon by <a href="https://www.flaticon.com/free-icons/hill" title="hill icon
 Trace data provided by [Scalene](https://github.com/plasma-umass/scalene)
 
 ## TODO:
-- https://code.visualstudio.com/api/working-with-extensions/bundling-extension
-- add extension to VSCode store
-- add functions and import performance metadata
-  - make the function annotations highlighted to differentiate
+- make the function annotations highlighted to differentiate
   - this requires making my own parsing logic and profile read time to map the function data into my lines metadata map
 - Outstanding bug in VSCode means I can't put the annotation in the gutter, so deleting code makes things wonky. A compromise between rerendering every keypress and every file change should be to only rerender if the number of lines in the file has changed. Of course, this will misalign the metadata, so this needs some sort of cheap extra logic to handle that case.
 - bundle with scalene?
 - Add ""use strict";" to all files
 - Add locking mechanism to tracing. Only run one trace at a time and make it clear and interruptible. Will require major refactor to use a class for each file.
 - Warn if editor is dirty befor run?
+- Add colored output like [this](https://github.com/formulahendry/vscode-code-runner/commit/cf7c6467a24c46d44a44fdc1c2c04fad856c3d3f)
+- add [keybindings](https://github.com/formulahendry/vscode-code-runner/blame/79e83c84e361bcf65dc4c1d5693ebbed864e694c/package.json#L67C9-L67C9)
+- add the [debug menu](https://github.com/formulahendry/vscode-code-runner/blame/79e83c84e361bcf65dc4c1d5693ebbed864e694c/package.json#L88) to interrupt scalene run
 
 ---
 
