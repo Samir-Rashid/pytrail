@@ -10,6 +10,9 @@ https://github.com/Samir-Rashid/pytrail/assets/35205346/e53e6ea7-ac18-4b3a-b99f-
 <a href="https://marketplace.visualstudio.com/items?itemName=Samir-Rashid.pytrail">
   <img src="https://img.shields.io/badge/Install-VSCode%20Marketplace-blue" alt="Marketplace Badge"/>
 </a>
+<a href="https://marketplace.visualstudio.com/items?itemName=Samir-Rashid.pytrail">
+  <img src="https://img.shields.io/visual-studio-marketplace/d/samir-rashid.pytrail" alt="Downloads"/>
+</a>
 
 1. Install from VSIX inside VSCode by `right click file -> install` or use `code --install-extension ./pytrail-0.0.1.vsix`
 2. Make sure you have a working main.py in the root of your vscode workspace. For example, open `tasks/` in VSCode.
