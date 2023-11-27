@@ -16,7 +16,7 @@ def plu_decomposition(matrix):
 
     for j in range(n):
         if j % 10 == 0:
-            print(f"{j/MATRIX_SIZE * 100}% done")
+            print(f"{j/MATRIX_SIZE * 100}% done", flush=True)
         # Partial Pivoting
         pivot_row = max(range(j, n), key=lambda i: abs(matrix[i][j]))
         if j != pivot_row:
