@@ -19,7 +19,7 @@ export function runScalene() {
   // so it can be streamed to debug console (-u)
   // BUG: `-u` doesn't work with scalene
   // BUG: scalene doesn't respect --json flag correctly.
-  const command = `python -um scalene --json --no-browser --cli --outfile ${profilePath} ${mainpyPath}`;
+  const command = `python -um scalene --json --no-browser --cli --outfile "${profilePath}" "${mainpyPath}"`;
   vscode.window.showInformationMessage(`running command: ${command}`);
   myOutputChannel.appendLine(`running command: ${command}`);
 
