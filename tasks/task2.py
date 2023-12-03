@@ -1,6 +1,3 @@
-# Sample Matrix PLU Decomposition.
-
-import functions
 import time
 import numpy as np
 
@@ -12,12 +9,12 @@ def plu_decomposition(matrix):
     l = [[0 if i != j else 1 for j in range(n)] for i in range(n)]
     u = [[0 for _ in range(n)] for _ in range(n)]
     
-    functions.recalibrate(p)
+    recalibrate(p)
 
     for j in range(n):
         if j % 10 == 0:
             print(f"{j/MATRIX_SIZE * 100}% done", flush=True)
-        # Partial Pivoting
+
         pivot_row = max(range(j, n), key=lambda i: abs(matrix[i][j]))
         if j != pivot_row:
             matrix[j], matrix[pivot_row] = matrix[pivot_row], matrix[j]
@@ -29,23 +26,28 @@ def plu_decomposition(matrix):
             factor = matrix[i][j] / u[j][j]
             l[i][j] = factor
             u[i][j:] = [a - factor * b for a, b in zip(matrix[i][j:], u[j][j:])]
-        functions.verify(u)
+        verify(u)
 
     return p, l, u
 
 def main():
-    # Example usage
+    print("Task2", flush=True)
     time.sleep(1)
 
     matrix = np.random.randint(1, 100, size=(MATRIX_SIZE, MATRIX_SIZE)).tolist()
 
     p, l, u = plu_decomposition(matrix)
-    # print("P matrix:")
-    # for row in p:
-    #     print(row)
-    # print("L matrix:")
-    # for row in l:
-    #     print(row)
-    # print("U matrix:")
-    # for row in u:
-    #     print(row)
+
+def recalibrate(table):
+    return 0
+    for i in table:
+        for j in i:
+            time.sleep(0.1)
+            print(j, flush=True)
+    time.sleep(0.72)
+
+def verify(table):
+    for i in table:
+        j = reversed(i)
+        s = max(j)
+ 
