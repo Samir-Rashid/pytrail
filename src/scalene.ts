@@ -14,6 +14,10 @@ export function runScalene() {
   const profilePath = path.join(workspaceDirectory, "profile.json");
   const mainpyPath = path.join(workspaceDirectory, "main.py");
 
+  // Make sure command output is readable
+  myOutputChannel.clear();
+  myOutputChannel.show();
+
   // TODO: --cli will output to stdout so I don't have to use a file
   // Use the nonglobal scalene installation (-m) and unbuffer text output
   // so it can be streamed to debug console (-u)
@@ -24,10 +28,6 @@ export function runScalene() {
   myOutputChannel.appendLine(`running command: ${command}`);
 
   const startTime = new Date();
-
-  // Make sure command output is readable
-  myOutputChannel.clear();
-  myOutputChannel.show();
 
   // Add env var to force Python to not buffer output
   // TODO: Did not succeed.
