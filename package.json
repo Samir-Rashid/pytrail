@@ -64,8 +64,8 @@
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
-    "install": "code --install-extension ./pytrail-0.0.1.vsix",
-    "debug": "rm -f ./pytrail-0.0.1.vsix && vsce package && code --install-extension ./pytrail-0.0.1.vsix",
+    "install": "code --install-extension ./pytrail-0.0.2.vsix",
+    "debug": "rm -f ./pytrail-0.0.2.vsix && vsce package && code --install-extension ./pytrail-0.0.2.vsix",
     "check": "npx prettier . --check",
     "format": "npx prettier . --write",
     "prepare": "husky install"
