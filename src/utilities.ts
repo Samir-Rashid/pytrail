@@ -23,9 +23,16 @@ export function parseAnnotationDataFile() {
     for (const filePath in profileData.files) {
       if (DEBUG) myOutputChannel.appendLine("parsing file path: " + filePath);
       const fileData = profileData.files[filePath];
-      const linesData = fileData.lines;
+      let linesData = fileData.lines;
+      const functionsData = fileData.functions;
 
-      // TODO: need to do this for functions and imports
+      // Overwrite line data if it is a function with overall function runtime
+      for (const func of functionsData) {
+        const lineNumber = parseInt(func.lineno);
+        linesData[lineNumber - 1] = func;
+      }
+
+      // TODO: need to do this for imports
       annotationData.set(filePath, linesData);
     }
   });

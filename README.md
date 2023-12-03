@@ -38,13 +38,11 @@ Trace data provided by [Scalene](https://github.com/plasma-umass/scalene)
 
 ## TODO:
 - URGENT: Figure out how to unbuffer Python inside of Scalene. May be impossible without a fork.
-- make the function annotations highlighted to differentiate
-  - this requires making my own parsing logic and profile read time to map the function data into my lines metadata map
 - Outstanding bug in VSCode means I can't put the annotation in the gutter, so deleting code makes things wonky. A compromise between rerendering every keypress and every file change should be to only rerender if the number of lines in the file has changed. Of course, this will misalign the metadata, so this needs some sort of cheap extra logic to handle that case.
 - bundle with scalene?
 - Add ""use strict";" to all files
 - Add locking mechanism to tracing. Only run one trace at a time and make it clear and interruptible. Will require major refactor to use a class for each file.
-- Warn if editor is dirty befor run?
+- Warn if editor is dirty before run?
 - Add colored output like [this](https://github.com/formulahendry/vscode-code-runner/commit/cf7c6467a24c46d44a44fdc1c2c04fad856c3d3f)
 - add [keybindings](https://github.com/formulahendry/vscode-code-runner/blame/79e83c84e361bcf65dc4c1d5693ebbed864e694c/package.json#L67C9-L67C9)
 - add the [debug menu](https://github.com/formulahendry/vscode-code-runner/blame/79e83c84e361bcf65dc4c1d5693ebbed864e694c/package.json#L88) to interrupt scalene run

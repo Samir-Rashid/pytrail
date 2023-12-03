@@ -32,6 +32,16 @@ export const decorationTypeHigh = vscode.window.createTextEditorDecorationType({
   },
 });
 
+// Decoration for functions
+export const decorationTypeFunction =
+  vscode.window.createTextEditorDecorationType({
+    before: {
+      margin: "0 0 0 10px",
+      color: "yellow",
+      backgroundColor: "grey",
+    },
+  });
+
 // This does not work because VSCode does not currently expose hover API for this
 // https://github.com/microsoft/vscode/issues/105302
 // https://github.com/microsoft/vscode/issues/28080

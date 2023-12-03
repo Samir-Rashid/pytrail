@@ -51,6 +51,26 @@ export async function annotateFile(document: TextDocument | undefined) {
         const lineNumber = lineData.lineno - 1; // VSCode lines are 0 indexed
 
         if (lineNumber >= 0 && lineNumber < editor.document.lineCount) {
+          // First check if this line is a function definition
+          if (lineData.line.startsWith("Scalene.")) {
+            // TODO: Make these use the decoration templates in `constants`, if possible
+            const range = editor.document.lineAt(lineNumber).range;
+            const decoration = {
+              range,
+              renderOptions: {
+                before: {
+                  contentText: `${time}% `,
+                  margin: "0 0 0 10px",
+                  color: "chartreuse",
+                  backgroundColor: "grey",
+                },
+              },
+            };
+
+            decorations.push(decoration);
+            continue;
+          }
+
           const color = time > 1 ? "red" : "white";
           const opacity = time > 1 ? "100%" : "50%";
           const range = editor.document.lineAt(lineNumber).range;
