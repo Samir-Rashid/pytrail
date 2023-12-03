@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Register the commands here, as defined from package.json
   let disposable = vscode.commands.registerCommand("pytrail.version", () => {
-    vscode.window.showInformationMessage("pytrail 0.0.1");
+    vscode.window.showInformationMessage("pytrail 0.0.3"); // TODO: get this value from package.json
   });
 
   let doAnnotating = vscode.commands.registerCommand(
