@@ -38,7 +38,9 @@ Trace data provided by [Scalene](https://github.com/plasma-umass/scalene)
 
 ## TODO:
 - URGENT: Figure out how to unbuffer Python inside of Scalene. May be impossible without a fork.
+  - This may be useful: `python3 -m scalene --- -m pytest your_test.py`
 - Outstanding bug in VSCode means I can't put the annotation in the gutter, so deleting code makes things wonky. A compromise between rerendering every keypress and every file change should be to only rerender if the number of lines in the file has changed. Of course, this will misalign the metadata, so this needs some sort of cheap extra logic to handle that case.
+  - if this gets done, would be nice to add a hover tooltip so that the annotations are self documenting. Users frequently get confused. Could say "10% of all 50% of foo()"
 - bundle with scalene?
 - Add ""use strict";" to all files
 - Add locking mechanism to tracing. Only run one trace at a time and make it clear and interruptible. Will require major refactor to use a class for each file.
