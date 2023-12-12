@@ -2,5 +2,4 @@ Pytrail is an extension that brings effortless performance tracing to the VSCode
 
 You are visiting our tasks. We did a user study comparing the usability of pytrail and cProfile. You could replicate our study if you wanted by using the Python files in this directory. As setup you can either use the `shell.nix` for Nix users, set up manually, or the easiest way is to use the GitHub devcontainer provided by this repo, which includes everything set up and tested properly.
 
-Check out our results in the `.pdf` file in this directory. You will also find our presentation of our results.
-
+Check out our results in the `.pdf` file in this directory. You will find our presentation and results paper.
